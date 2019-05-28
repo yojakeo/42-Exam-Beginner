@@ -13,6 +13,7 @@ int main(int ac, char **av)
 	unsigned char temp[128];
 	while (av[1][++i])
 		cpy[i] = av[1][i];
+	i = -1;
 	while (av[2][++i])
 		cpy[i] = av[2][i];
 	i = -1;
