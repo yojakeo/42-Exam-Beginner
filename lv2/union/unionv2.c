@@ -14,40 +14,29 @@ int main(int ac, char **av)
 	}
 	int i = -1;
 	int bindex;
+	char cpy[256];
 	unsigned char temp[128];
 	while (av[1][++i])
-	{
-		bindex = av[1][i];
-		if (temp[bindex] == 0)
-			temp[bindex] = 1;
-	}
-	i = -1;
+		cpy[i] = av[1][i];
 	while (av[2][++i])
+		cpy[i] = av[2][i];
+	i = -1;
+	while (cpy[++i])
 	{
-		bindex = av[2][i];
+		bindex = cpy[i];
 		if (temp[bindex] == 0)
 			temp[bindex] = 1;
 	}
 	i = -1;
-	while (av[1][++i])
+	while (cpy[++i])
 	{
-		bindex = av[1][i];
+		bindex = cpy[i];
 		if (temp[bindex] == 1)
 		{
-			ft_putchar(av[1][i]);
+			ft_putchar(cpy[i]);
 			temp[bindex] = 0;
 		}
 	}
-	i = -1;
-   	while (av[2][++i])
-    {
-		bindex = av[2][i];
-        if (temp[bindex] == 1)
-        {
-            ft_putchar(av[2][i]);
-            temp[bindex] = 0;
-        }
-    }
     ft_putchar('\n');
 	return 0;
 }
