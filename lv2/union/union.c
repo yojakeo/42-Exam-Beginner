@@ -1,53 +1,30 @@
 #include <unistd.h>
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
 int main(int ac, char **av)
 {
 	if (ac != 3)
 	{
-		ft_putchar('\n');
+		write(1, "\n", 1);
 		return 0;
 	}
 	int i = -1;
 	int bindex;
+	char cpy[256];
 	unsigned char temp[128];
 	while (av[1][++i])
-	{
-		bindex = av[1][i];
-		if (temp[bindex] == 0)
-			temp[bindex] = 1;
-	}
-	i = -1;
+		cpy[i] = av[1][i];
 	while (av[2][++i])
-	{
-		bindex = av[2][i];
-		if (temp[bindex] == 0)
-			temp[bindex] = 1;
-	}
+		cpy[i] = av[2][i];
 	i = -1;
-	while (av[1][++i])
+	while (cpy[++i])
 	{
-		bindex = av[1][i];
-		if (temp[bindex] == 1)
+		bindex = cpy[i];
+		if (temp[bindex] == 0)
 		{
-			ft_putchar(av[1][i]);
-			temp[bindex] = 0;
+			write(1, &cpy[i], 1);
+			temp[bindex] = 1;
 		}
 	}
-	i = -1;
-   	while (av[2][++i])
-    {
-		bindex = av[2][i];
-        if (temp[bindex] == 1)
-        {
-            ft_putchar(av[2][i]);
-            temp[bindex] = 0;
-        }
-    }
-    ft_putchar('\n');
+    write(1, "\n", 1);
 	return 0;
 }
