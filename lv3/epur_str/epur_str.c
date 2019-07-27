@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camel_to_snake.c                                   :+:      :+:    :+:   */
+/*   epur_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: japarbs <japarbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/22 16:37:11 by japarbs           #+#    #+#             */
-/*   Updated: 2019/07/22 17:07:36 by japarbs          ###   ########.fr       */
+/*   Created: 2019/07/23 11:34:50 by exam              #+#    #+#             */
+/*   Updated: 2019/07/23 12:23:11 by exam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	putchar(int c)
-{
-	write(1, &c, 1);
-}
-
 int main(int ac, char **av)
 {
-	int i;
-
-	i = -1;
+	int i = 0;
 	if (ac == 2)
 	{
-		while(av[1][++i])
+		while (av[1][i] == ' ' || av[1][i] == '\t')
+			++i;
+		while (av[1][i])
 		{
-			if (av[1][i] >= 'A' && av[1][i] <= 'Z')
-			{
-				putchar('_');
-				putchar(av[1][i] + 32);
-			}
-			else
-				putchar(av[1][i]);
+			while (av[1][i + 1] == ' ' || av[1][i + 1] == '\t')
+                ++i;
+			write(1, " ", 1);
+			while (!(av[1][i] == ' ' || av[1][i + 1] == '\t') && av[1][i])
+				write(1, &av[1][i++], 1);
 		}
 	}
-	putchar('\n');
+	write(1, "\n", 1);
 	return (0);
 }
